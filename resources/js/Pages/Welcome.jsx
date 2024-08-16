@@ -39,11 +39,11 @@ export default function Welcome({ auth }) {
                                 <div className="bg-white rounded-lg shadow-md p-6">
                                     <h3 className="text-2xl font-bold text-blue-800 mb-4">Our Programs</h3>
                                     <ul className="list-disc list-inside text-gray-700">
-                                        <li>Beginner Classes</li>
-                                        <li>Intermediate Classes</li>
-                                        <li>Advanced Classes</li>
-                                        <li>Private Coaching</li>
-                                        <li>Competitive Swimming</li>
+                                        <li>Baby Classes</li>
+                                        <li>Toddler Classes</li>
+                                        <li>Kid Classes</li>
+                                        <li>Adult Classes</li>
+                                        <li>Private Lessons</li>
                                     </ul>
                                 </div>
                             </div>
