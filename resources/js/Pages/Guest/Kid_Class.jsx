@@ -38,7 +38,7 @@ export default function KidClasses({ auth }) {
                         <p className="text-gray-700 mt-2">Help your child develop essential swimming skills that last a lifetime.</p>
                     </div>
                     <div>
-                        <img src="/images/fit_icon.png" alt="Fitness Icon" className="mx-auto mb-4 w-40 h-40"/>
+                        <img src="/images/health_icon.png" alt="Fitness Icon" className="mx-auto mb-4 w-40 h-40"/>
                         <h3 className="text-xl font-semibold">Fitness and Health</h3>
                         <p className="text-gray-700 mt-2">Encourage physical fitness and healthy habits through regular swimming.</p>
                     </div>
