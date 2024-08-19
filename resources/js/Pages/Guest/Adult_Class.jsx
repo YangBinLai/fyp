@@ -43,7 +43,7 @@ export default function AdultClasses({ auth }) {
                         <p className="text-gray-700 mt-2">Escape the stress of everyday life and relax in the calming waters of our pool.</p>
                     </div>
                     <div>
-                        <img src="/images/skill_icon.png" alt="Skill Improvement Icon" className="mx-auto mb-4 w-40 h-40"/>
+                        <img src="/images/improve_icon.png" alt="Skill Improvement Icon" className="mx-auto mb-4 w-40 h-40"/>
                         <h3 className="text-xl font-semibold">Improve Skills</h3>
                         <p className="text-gray-700 mt-2">Whether you're a beginner or looking to refine your strokes, our classes are tailored to your needs.</p>
                     </div>
