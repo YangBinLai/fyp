@@ -6,21 +6,18 @@ export default function PrivateClasses({ auth }) {
         <Layout auth={auth}>
             <Head title="Private Swimming Classes" />
 
-            {/* Hero Section */}
             <div className="relative text-black text-center pt-20">
-                {/* Background Image */}
                 <img
                     src="/images/private_class.jpg"
                     alt="Private Class"
                     className="w-full h-96 object-cover filter blur-sm opacity-70"
                 />
 
-                {/* Text Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <h1 className="text-5xl font-bold">Private Swimming Classes</h1>
                     <p className="text-xl mt-4">Achieve your swimming goals with personalized, one-on-one instruction tailored just for you.</p>
                     <a
-                        href={route('register')}
+                        href={route('register_class')}
                         className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                     >
                         Book Your Private Class
@@ -50,7 +47,6 @@ export default function PrivateClasses({ auth }) {
                 </div>
             </div>
 
-            {/* Class Details Section */}
             <div className="py-12">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <h2 className="text-4xl font-bold text-center text-blue-800 mb-8">Class Details</h2>
@@ -114,12 +110,11 @@ export default function PrivateClasses({ auth }) {
                 </div>
             </div>
 
-            {/* Call to Action Section */}
             <div className="bg-gray-100 text-black py-12 text-center">
                 <h2 className="text-4xl font-bold">Ready to Start Your Private Lessons?</h2>
                 <p className="text-lg mt-4">Book your private swimming classes today and get the personalized instruction you need to achieve your swimming goals!</p>
                 <a
-                    href={route('register')}
+                    href={route('register_class')}
                     className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                 >
                     Book Your Private Class

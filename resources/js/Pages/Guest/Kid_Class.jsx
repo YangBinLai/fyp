@@ -6,29 +6,25 @@ export default function KidClasses({ auth }) {
         <Layout auth={auth}>
             <Head title="Kid Swimming Classes" />
 
-            {/* Hero Section */}
             <div className="relative text-white text-center pt-20">
-                {/* Background Image */}
                 <img
                     src="/images/kid_class.jpg"
                     alt="Kid Class"
                     className="w-full h-96 object-cover filter blur-sm opacity-70"
                 />
 
-                {/* Text Overlay */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <h1 className="text-5xl font-bold">Kid Swimming Classes</h1>
                     <p className="text-xl mt-4">Build confidence and skills in the water with our fun and engaging classes for kids.</p>
                     <a
-                        href={route('register')}
+                        href={route('register_class')}
                         className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                     >
-                        Register Now
+                        Register Class
                     </a>
                 </div>
             </div>
 
-            {/* Benefits Section */}
             <div className="py-12 bg-gray-100 text-center">
                 <h2 className="text-4xl font-bold text-blue-800 mb-6">Why Enroll in Our Kid Swimming Classes?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -50,7 +46,6 @@ export default function KidClasses({ auth }) {
                 </div>
             </div>
 
-            {/* Class Details Section */}
             <div className="py-12">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <h2 className="text-4xl font-bold text-center text-blue-800 mb-8">Class Details</h2>
@@ -78,7 +73,6 @@ export default function KidClasses({ auth }) {
                 </div>
             </div>
 
-            {/* Testimonials Section */}
             <div className="bg-gray-100 py-12">
                 <div className="container mx-auto px-6 text-center">
                     <h2 className="text-4xl font-bold text-blue-800 mb-8">What Parents Are Saying</h2>
@@ -95,7 +89,6 @@ export default function KidClasses({ auth }) {
                 </div>
             </div>
 
-            {/* FAQs Section */}
             <div className="py-12">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <h2 className="text-4xl font-bold text-center text-blue-800 mb-8">Frequently Asked Questions</h2>
@@ -112,15 +105,14 @@ export default function KidClasses({ auth }) {
                 </div>
             </div>
 
-            {/* Call to Action Section */}
             <div className="bg-gray-100 text-black py-12 text-center">
                 <h2 className="text-4xl font-bold text-blue-800">Ready to Get Started?</h2>
                 <p className="text-lg mt-4">Enroll your child in our Kid Swimming Classes today and watch them thrive in the water!</p>
                 <a
-                    href={route('register')}
+                    href={route('register_class')}
                     className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                 >
-                    Register Now
+                    Register Class
                 </a>
                 <p className="text-md mt-4">Or call us at <a href="tel:+1234567890" className="underline">+1234567890</a> for more information.</p>
             </div>
