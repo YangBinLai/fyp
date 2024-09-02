@@ -3,13 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coach;
+use App\Models\Registration;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class CoachController extends Controller
 {
+    public function index(Request $request)
+    {
+        $user = Auth::getUser();
+        if($user->role!='coach'){
+            return response()->json(['message' => 'unauthorized']);
+        }
+        $registration = Registration::with('user')->get();
+
+        return Inertia::render('Coach/Coach_Dashboard', [
+            'registrations' => $registration
+        ]);
+    }
     public function store(Request $request)
     {
         $user = Auth::getUser();
