@@ -18,7 +18,7 @@ export default function BabyClass({ auth }) {
                     <p className="text-xl mt-4">Nurture your baby's love for water with our safe, fun, and engaging
                         swimming lessons.</p>
                     <a
-                        href={route('register_class')}
+                        href={auth.user ? route('register_class') : route('login')}
                         className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                     >
                         Register Class
@@ -117,7 +117,10 @@ export default function BabyClass({ auth }) {
             <div className="bg-gray-100 text-white py-12 text-center">
                 <h2 className="text-4xl font-bold text-center text-blue-800 mb-8">Ready to Get Started?</h2>
                 <p className="text-lg font-semibold text-gray-900 mt-4">Sign up for our Baby Swimming Classes today and give your little one a head start in water safety and fun!</p>
-                <a href={route('register_class')} className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200">
+                <a
+                    href={auth.user ? route('register_class') : route('login')}
+                   className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
+                >
                     Register Class
                 </a>
                 <p className="text-md font-semibold text-gray-900 mt-4">Or call us at <a href="tel:+1234567890" className="underline">+1234567890</a> for more information.</p>

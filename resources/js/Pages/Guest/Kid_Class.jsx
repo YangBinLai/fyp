@@ -17,7 +17,7 @@ export default function KidClasses({ auth }) {
                     <h1 className="text-5xl font-bold">Kid Swimming Classes</h1>
                     <p className="text-xl mt-4">Build confidence and skills in the water with our fun and engaging classes for kids.</p>
                     <a
-                        href={route('register_class')}
+                        href={auth.user ? route('register_class') : route('login')}
                         className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                     >
                         Register Class
@@ -109,7 +109,7 @@ export default function KidClasses({ auth }) {
                 <h2 className="text-4xl font-bold text-blue-800">Ready to Get Started?</h2>
                 <p className="text-lg mt-4">Enroll your child in our Kid Swimming Classes today and watch them thrive in the water!</p>
                 <a
-                    href={route('register_class')}
+                    href={auth.user ? route('register_class') : route('login')}
                     className="mt-6 inline-block bg-white text-blue-800 px-8 py-3 rounded-md text-lg font-semibold hover:bg-gray-200"
                 >
                     Register Class
