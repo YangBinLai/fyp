@@ -1,5 +1,5 @@
 import React from 'react';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import Layout from "@/Layouts/Layout.jsx";
 
 export default function UserDashboard({ auth }) {
@@ -23,6 +23,7 @@ export default function UserDashboard({ auth }) {
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Time</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Coach</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Status</th>
+                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -34,6 +35,18 @@ export default function UserDashboard({ auth }) {
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{registration.coach.name}</td>
                                             <td className={`px-6 py-4 whitespace-no-wrap border-b border-gray-300 ${registration.status === 'accepted' ? 'text-green-500' : registration.status === 'rejected' ? 'text-red-500' : ''}`}>
                                                 {registration.status}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                                {['accepted', 'rejected'].includes(registration.status) ? (
+                                                    <span className="text-gray-500 italic">Cannot Edit</span>
+                                                ) : (
+                                                    <Link
+                                                        href={route('registrations.edit', registration.id)}
+                                                        className={`px-4 py-2 rounded ${registration.status === 'pending' ? 'bg-yellow-500 text-white' : 'bg-blue-500 text-white'} hover:bg-opacity-75`}
+                                                    >
+                                                        Edit
+                                                    </Link>
+                                                )}
                                             </td>
                                         </tr>
                                     ))}
