@@ -34,7 +34,7 @@ export default function Register({ auth }) {
         <Layout auth={auth}>
             <Head title="Register for Baby Swimming Classes" />
 
-            <div className="container mx-auto py-12 px-6 md:px-12 lg:px-24 pt-20">
+            <div className="container mx-auto py-12 px-6 md:px-12 lg:px-24">
                 <h2 className="text-4xl font-bold text-center text-blue-800 mb-8">Register for Swimming Classes</h2>
                 <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md">
                     <div className="mb-4">
