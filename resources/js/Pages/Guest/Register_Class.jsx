@@ -15,6 +15,9 @@ export default function Register({ auth }) {
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 2);
 
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 2);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('register_class.submit'), {
@@ -41,7 +44,7 @@ export default function Register({ auth }) {
                             onChange={(date) => setData('selectedDate', date)}
                             dateFormat="yyyy/MM/dd"
                             className="mt-1 block w-full border rounded py-2 px-3"
-                            minDate={new Date()}
+                            minDate={minDate}
                             maxDate={maxDate}
                         />
                         {errors.selectedDate && <div className="text-red-600 mt-2">{errors.selectedDate}</div>}
