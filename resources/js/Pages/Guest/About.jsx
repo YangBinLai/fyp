@@ -7,7 +7,7 @@ export default function About(auth){
         <>
             <Layout auth={auth}>
                 <Head title="About Us" />
-                <div className="bg-gray-100 py-12 pt-20">
+                <div className="bg-gray-100 py-12">
                     <div className="container mx-auto px-6 md:px-12 lg:px-24">
                         <h1 className="text-4xl font-bold text-blue-800 text-center mb-6">About Us</h1>
                         <p className="text-lg text-gray-700 text-center mb-12">

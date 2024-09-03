@@ -7,7 +7,7 @@ export default function BabyClass({ auth }) {
             <Head title="Baby Swimming Classes" />
 
             {/* Hero Section */}
-            <div className="relative text-black py-2 text-center pt-20">
+            <div className="relative text-black py-2 text-center">
                 <img
                     src="/images/baby_class.jpg"
                     alt="Baby Class"

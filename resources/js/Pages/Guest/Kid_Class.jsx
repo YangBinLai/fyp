@@ -6,7 +6,7 @@ export default function KidClasses({ auth }) {
         <Layout auth={auth}>
             <Head title="Kid Swimming Classes" />
 
-            <div className="relative text-white text-center pt-20">
+            <div className="relative text-white text-center">
                 <img
                     src="/images/kid_class.jpg"
                     alt="Kid Class"

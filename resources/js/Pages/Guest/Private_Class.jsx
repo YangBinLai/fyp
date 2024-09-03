@@ -6,7 +6,7 @@ export default function PrivateClasses({ auth }) {
         <Layout auth={auth}>
             <Head title="Private Swimming Classes" />
 
-            <div className="relative text-black text-center pt-20">
+            <div className="relative text-black text-center">
                 <img
                     src="/images/private_class.jpg"
                     alt="Private Class"

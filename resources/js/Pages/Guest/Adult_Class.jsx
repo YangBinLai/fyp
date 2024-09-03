@@ -7,7 +7,7 @@ export default function AdultClasses({ auth }) {
             <Head title="Adult Swimming Classes" />
 
             {/* Hero Section */}
-            <div className="relative text-white text-center pt-20">
+            <div className="relative text-white text-center">
                 {/* Background Image */}
                 <img
                     src="/images/adult_class.jpeg"

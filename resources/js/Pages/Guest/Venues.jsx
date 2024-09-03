@@ -5,7 +5,7 @@ export default function Venues({ auth }) {
     return (
         <Layout auth={auth}>
             <Head title="Venues" />
-            <div className="bg-gray-100 py-12 pt-20">
+            <div className="bg-gray-100 py-12">
                 <div className="container mx-auto px-6 md:px-12 lg:px-24">
                     <div className="text-center mb-16">
                         <h1 className="text-6xl font-bold text-blue-800 mb-6">Our Venues</h1>

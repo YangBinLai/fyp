@@ -5,7 +5,7 @@ export default function Career({ auth }) {
     return (
         <Layout auth={auth}>
             <Head title="Careers" />
-            <div className="bg-gray-100 py-12">
+            <div className="bg-gray-100">
                 <div className="relative">
                     <img
                         src="/images/CareerPic.jpg"
