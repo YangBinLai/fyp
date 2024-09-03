@@ -44,7 +44,7 @@ class RegisterClassController extends Controller
         $registration = Registration::findOrFail($id);
         $registration->update(['status' => 'accepted']);
 
-//        $registration->user->notify(new RegistrationStatusNotification('accepted', $registration->class, $registration->date, $registration->time));
+        $registration->user->notify(new RegistrationStatusNotification('accepted', $registration->class, $registration->date, $registration->time));
 
         return redirect()->route('coach_dashboard')->with('success', 'Registration accepted.');
     }
@@ -54,7 +54,7 @@ class RegisterClassController extends Controller
         $registration = Registration::findOrFail($id);
         $registration->update(['status' => 'rejected']);
 
-//        $registration->user->notify(new RegistrationStatusNotification('rejected', $registration->class, $registration->date, $registration->time));
+        $registration->user->notify(new RegistrationStatusNotification('rejected', $registration->class, $registration->date, $registration->time));
 
         return redirect()->route('coach_dashboard')->with('success', 'Registration rejected.');
     }
