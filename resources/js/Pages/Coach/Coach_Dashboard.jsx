@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, Link } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function CoachDashboard({ auth }) {
     const { registrations = [] } = usePage().props;
 
     return (

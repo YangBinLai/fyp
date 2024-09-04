@@ -65,8 +65,8 @@ export default function Fees({ auth }) {
                     <div className="text-center mt-12">
                         <h2 className="text-4xl font-bold text-blue-800 mb-6">Ready to Dive In?</h2>
                         <p className="text-xl text-gray-700 mb-8">Choose the right class for you and start your swimming journey today. Our experienced coaches are ready to help you achieve your goals.</p>
-                        <a href={route('register')} className="bg-blue-800 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition">
-                            Register Now
+                        <a href={route('register_class')} className="bg-blue-800 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition">
+                            Register Class Now !
                         </a>
                     </div>
                 </div>

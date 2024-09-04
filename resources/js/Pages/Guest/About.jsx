@@ -2,7 +2,7 @@ import {Head} from "@inertiajs/react";
 import React from 'react';
 import Layout from "@/Layouts/Layout.jsx";
 
-export default function About(auth){
+export default function About( {auth} ){
     return(
         <>
             <Layout auth={auth}>
@@ -11,7 +11,7 @@ export default function About(auth){
                     <div className="container mx-auto px-6 md:px-12 lg:px-24">
                         <h1 className="text-4xl font-bold text-blue-800 text-center mb-6">About Us</h1>
                         <p className="text-lg text-gray-700 text-center mb-12">
-                            Welcome to [Academy Name], where passion meets professionalism in the world of swimming.
+                            Welcome to Octopi, where passion meets professionalism in the world of swimming.
                             We are dedicated to providing the best swimming experience for our members of all ages and
                             skill levels.
                         </p>
@@ -20,7 +20,7 @@ export default function About(auth){
                             <div className="bg-white rounded-lg shadow-lg p-6">
                                 <h2 className="text-2xl font-bold text-blue-800 mb-4">Our Mission</h2>
                                 <p className="text-gray-700 mb-4">
-                                    At [Academy Name], our mission is to cultivate a love for swimming through
+                                    At Octopi, our mission is to cultivate a love for swimming through
                                     exceptional coaching and a supportive environment. We believe that swimming is a
                                     life skill that promotes physical health, mental well-being, and personal growth.
                                 </p>

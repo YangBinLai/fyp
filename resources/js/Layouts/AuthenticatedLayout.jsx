@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 
 export default function Authenticated({ user, header, children }) {
