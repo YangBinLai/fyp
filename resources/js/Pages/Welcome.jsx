@@ -10,8 +10,8 @@ export default function Welcome({ auth }) {
                     <img src="/images/Pic1.jpeg" alt="Swimming" className="-mt-20"/>
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl text-center">
                         <main className="mt-6">
-                            <h1 className="text-6xl font-bold text-gray-900 mb-4">Dive into Excellence</h1>
-                            <h2 className="text-2xl font-semibold text-gray-700 mb-6">Where Champions are Made</h2>
+                            <h1 className="text-6xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Georgia, serif'}}>Dive into Excellence</h1>
+                            <h2 className="text-2xl font-semibold text-gray-700 mb-6" style={{fontFamily: 'Georgia, serif'}}>Where Champions are Made</h2>
 
                             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                                 <div className="bg-white rounded-lg shadow-md p-6">
