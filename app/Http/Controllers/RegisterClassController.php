@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coach;
+use App\Models\CoachAvailability;
 use App\Models\Registration;
 use App\Notifications\RegistrationStatusNotification;
 use Carbon\Carbon;
@@ -67,12 +68,26 @@ class RegisterClassController extends Controller
         return redirect()->route('user_dashboard')->with('success', 'Class updated successfully.');
     }
 
+//    public function accept($id)
+//    {
+//        $registration = Registration::findOrFail($id);
+//        $registration->update(['status' => 'accepted']);
+//
+//        $registration->user->notify(new RegistrationStatusNotification('accepted', $registration->class, $registration->date, $registration->time));
+//
+//        return redirect()->route('coach_dashboard')->with('success', 'Registration accepted.');
+//    }
     public function accept($id)
     {
         $registration = Registration::findOrFail($id);
         $registration->update(['status' => 'accepted']);
 
-        $registration->user->notify(new RegistrationStatusNotification('accepted', $registration->class, $registration->date, $registration->time));
+        // Store the coach's unavailable time (date and start time)
+        CoachAvailability::create([
+            'coach_id' => $registration->coach_id,
+            'date' => $registration->date,
+            'start_time' => $registration->time,
+        ]);
 
         return redirect()->route('coach_dashboard')->with('success', 'Registration accepted.');
     }
