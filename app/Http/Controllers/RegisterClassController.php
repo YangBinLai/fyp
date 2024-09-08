@@ -67,22 +67,12 @@ class RegisterClassController extends Controller
 
         return redirect()->route('user_dashboard')->with('success', 'Class updated successfully.');
     }
-
-//    public function accept($id)
-//    {
-//        $registration = Registration::findOrFail($id);
-//        $registration->update(['status' => 'accepted']);
-//
-//        $registration->user->notify(new RegistrationStatusNotification('accepted', $registration->class, $registration->date, $registration->time));
-//
-//        return redirect()->route('coach_dashboard')->with('success', 'Registration accepted.');
-//    }
+    
     public function accept($id)
     {
         $registration = Registration::findOrFail($id);
         $registration->update(['status' => 'accepted']);
 
-        // Store the coach's unavailable time (date and start time)
         CoachAvailability::create([
             'coach_id' => $registration->coach_id,
             'date' => $registration->date,
