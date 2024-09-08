@@ -9,6 +9,7 @@ export default function UserDashboard({ auth }) {
     const handleCheckout = (event, registrationId) => {
         event.preventDefault(); //TO prevent refresh
         post(route('process_payment'), {
+            data: { registration_id: registrationId },
             onSuccess: (value) => {
                 window.location.href = value.props.url.url; //Bypass CORS (handle in fe rather than be)
                 alert('Success payment');
@@ -16,7 +17,6 @@ export default function UserDashboard({ auth }) {
             onError: (errors) => {
                 alert('Failed payment');
             },
-            data: { registration_id: registrationId }
         });
     };
     return (
@@ -87,80 +87,3 @@ export default function UserDashboard({ auth }) {
         </Layout>
     );
 }
-
-// import React from 'react';
-// import {Head, useForm, usePage} from '@inertiajs/react';
-// import Layout from "@/Layouts/Layout.jsx";
-//
-// export default function UserDashboard({auth}) {
-//     const {registrations = [], url} = usePage().props;
-//     const {post} = useForm();
-//
-//     const handleCheckout = (event, registrationId) => {
-//         event.preventDefault(); //TO prevent refresh
-//         post(route('process_payment'), {
-//             onSuccess: (value) => {
-//                 window.location.href = value.props.url.url; //Bypass CORS (handle in fe rather than be)
-//                 alert('Success payment');
-//             },
-//             onError: (errors) => {
-//                 alert('Failed payment');
-//             },
-//             data: { registration_id: registrationId }
-//         });
-//     };
-//
-//     return (
-//         <Layout auth={auth}>
-//             <Head title="User Dashboard" />
-//
-//             <div className="min-h-screen flex items-center justify-center py-12 bg-gray-100">
-//                 <div className="max-w-7xl w-full sm:px-6 lg:px-8">
-//                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-//                         <h2 className="text-2xl font-bold mb-6">{auth.user.name}'s Registered Classes</h2>
-//
-//                         {registrations.length > 0 ? (
-//                             <div className="overflow-x-auto">
-//                                 <table className="min-w-full bg-white">
-//                                     <thead>
-//                                     <tr>
-//                                         <th>Class Name</th>
-//                                         <th>Date</th>
-//                                         <th>Time</th>
-//                                         <th>Coach</th>
-//                                         <th>Status</th>
-//                                         <th>Pay</th>
-//                                     </tr>
-//                                     </thead>
-//                                     <tbody>
-//                                     {registrations.map((registration) => (
-//                                         <tr key={registration.id}>
-//                                             <td>{registration.class}</td>
-//                                             <td>{registration.date}</td>
-//                                             <td>{registration.time}</td>
-//                                             <td>{registration.coach.name}</td>
-//                                             <td>{registration.status}</td>
-//                                             <td>
-//                                                 {registration.status === 'accepted' && (
-//                                                     <button
-//                                                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-//                                                         onClick={(event) => handleCheckout(event, registration.id)}
-//                                                     >
-//                                                         Pay
-//                                                     </button>
-//                                                 )}
-//                                             </td>
-//                                         </tr>
-//                                     ))}
-//                                     </tbody>
-//                                 </table>
-//                             </div>
-//                         ) : (
-//                             <p>You have not registered for any classes yet.</p>
-//                         )}
-//                     </div>
-//                 </div>
-//             </div>
-//         </Layout>
-//     );
-// }

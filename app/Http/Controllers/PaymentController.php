@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Stripe\Tax\Transaction;
@@ -10,7 +11,13 @@ class PaymentController extends Controller
 {
     public function onsuccess(): \Inertia\Response
     {
-        return Inertia::render('Guest/User_dashboard');
+        $registrations = Registration::with('coach')
+            ->where('user_id', auth()->id())
+            ->get();
+
+        return Inertia::render('Guest/User_dashboard', [
+            'registrations' => $registrations,
+        ]);
     }
 
     public function processPayment(Request $request): \Illuminate\Http\RedirectResponse
@@ -36,9 +43,15 @@ class PaymentController extends Controller
         return redirect()->route('user_dashboard')->with('url', $checkout_session->url);
     }
 
-    public function oncancel(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    public function oncancel(): \Inertia\Response
     {
-        return view('user_dashboard');
+        $registrations = Registration::with('coach')
+            ->where('user_id', auth()->id())
+            ->get();
+
+        return Inertia::render('Guest/User_dashboard', [
+            'registrations' => $registrations,
+        ]);
     }
 
     public function webhook(): \Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
