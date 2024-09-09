@@ -67,7 +67,19 @@ class RegisterClassController extends Controller
 
         return redirect()->route('user_dashboard')->with('success', 'Class updated successfully.');
     }
-    
+
+    public function destroy($id)
+    {
+        $registration = Registration::find($id);
+
+        if ($registration && $registration->status === 'pending') {
+            $registration->delete();
+            return redirect()->route('user_dashboard')->with('success', 'Class deleted successfully.');
+        }
+
+        return redirect()->route('user_dashboard')->with('error', 'You cannot delete this class.');
+    }
+
     public function accept($id)
     {
         $registration = Registration::findOrFail($id);

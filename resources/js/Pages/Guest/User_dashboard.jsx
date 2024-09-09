@@ -4,7 +4,7 @@ import Layout from "@/Layouts/Layout.jsx";
 
 export default function UserDashboard({ auth }) {
     const { registrations = [] } = usePage().props;
-    const {post} = useForm();
+    const { post, delete: destroy } = useForm(); // Corrected 'delete' function
 
     const handleCheckout = (event, registrationId) => {
         event.preventDefault(); //TO prevent refresh
@@ -19,6 +19,21 @@ export default function UserDashboard({ auth }) {
             },
         });
     };
+
+    const handleDelete = (event, registrationId) => {
+        event.preventDefault();
+        if (confirm("Are you sure you want to delete this class?")) {
+            destroy(route('registrations.destroy', registrationId), {
+                onSuccess: () => {
+                    alert('Class deleted successfully');
+                },
+                onError: () => {
+                    alert('Failed to delete class');
+                }
+            });
+        }
+    };
+
     return (
         <Layout auth={auth}>
             <Head title="User Dashboard" />
@@ -61,6 +76,16 @@ export default function UserDashboard({ auth }) {
                                                     >
                                                         Edit
                                                     </Link>
+                                                )}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                                {registration.status === 'pending' && (
+                                                    <button
+                                                        onClick={(event) => handleDelete(event, registration.id)}
+                                                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                                    >
+                                                        Delete
+                                                    </button>
                                                 )}
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
