@@ -23,7 +23,6 @@ export default function Fees({ auth }) {
                                     <th className="py-3 px-6 text-left bg-blue-800 text-white font-bold uppercase">Class Type</th>
                                     <th className="py-3 px-6 text-center bg-blue-800 text-white font-bold uppercase">Duration</th>
                                     <th className="py-3 px-6 text-center bg-blue-800 text-white font-bold uppercase">Price per Session</th>
-                                    <th className="py-3 px-6 text-center bg-blue-800 text-white font-bold uppercase">Price per Month</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,31 +30,26 @@ export default function Fees({ auth }) {
                                     <td className="py-4 px-6 text-gray-900">Baby Swimming (4-23 months)</td>
                                     <td className="py-4 px-6 text-center text-gray-700">30 minutes</td>
                                     <td className="py-4 px-6 text-center text-gray-700">RM20</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">RM75</td>
                                 </tr>
                                 <tr className="hover:bg-gray-100">
                                     <td className="py-4 px-6 text-gray-900">Toddler Swimming (2-4 years)</td>
                                     <td className="py-4 px-6 text-center text-gray-700">30 minutes</td>
                                     <td className="py-4 px-6 text-center text-gray-700">RM22</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">RM80</td>
                                 </tr>
                                 <tr className="hover:bg-gray-100">
                                     <td className="py-4 px-6 text-gray-900">Kid Swimming (5-12 years)</td>
                                     <td className="py-4 px-6 text-center text-gray-700">45 minutes</td>
                                     <td className="py-4 px-6 text-center text-gray-700">RM25</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">RM90</td>
                                 </tr>
                                 <tr className="hover:bg-gray-100">
                                     <td className="py-4 px-6 text-gray-900">Adult Swimming (&gt;13 years)</td>
                                     <td className="py-4 px-6 text-center text-gray-700">60 minutes</td>
                                     <td className="py-4 px-6 text-center text-gray-700">RM30</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">RM110</td>
                                 </tr>
                                 <tr className="hover:bg-gray-100">
                                     <td className="py-4 px-6 text-gray-900">Private Lessons</td>
                                     <td className="py-4 px-6 text-center text-gray-700">60 minutes</td>
                                     <td className="py-4 px-6 text-center text-gray-700">RM50</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">RM180</td>
                                 </tr>
                                 </tbody>
                             </table>
