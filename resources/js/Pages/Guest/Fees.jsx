@@ -32,11 +32,6 @@ export default function Fees({ auth }) {
                                     <td className="py-4 px-6 text-center text-gray-700">RM20</td>
                                 </tr>
                                 <tr className="hover:bg-gray-100">
-                                    <td className="py-4 px-6 text-gray-900">Toddler Swimming (2-4 years)</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">30 minutes</td>
-                                    <td className="py-4 px-6 text-center text-gray-700">RM22</td>
-                                </tr>
-                                <tr className="hover:bg-gray-100">
                                     <td className="py-4 px-6 text-gray-900">Kid Swimming (5-12 years)</td>
                                     <td className="py-4 px-6 text-center text-gray-700">45 minutes</td>
                                     <td className="py-4 px-6 text-center text-gray-700">RM25</td>
