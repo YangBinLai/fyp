@@ -10,7 +10,7 @@ export default function Unavailable({ auth, unavailableDates }) {
             <div className="min-h-screen flex flex-col bg-gray-100 py-12">
                 <div className="max-w-7xl w-full sm:px-6 lg:px-8">
                     <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6">
-                        <h2 className="text-2xl font-bold mb-6">Coaches' Unavailable Dates and Times</h2>
+                        <h2 className="text-2xl font-bold mb-6">Coaches' Dates and Times</h2>
                         <div className="overflow-x-auto">
                             <table className="min-w-full bg-white">
                                 <thead>
