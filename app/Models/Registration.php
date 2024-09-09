@@ -9,11 +9,11 @@ class Registration extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'class', 'time', 'area', 'coach_id', 'user_id', 'status'];
+    protected $fillable = ['date', 'class', 'time', 'area', 'coach_id', 'user_id', 'status', 'payment_status'];
 
     public function coach()
     {
-        return $this->belongsTo(Coach::class);
+        return $this->belongsTo(Coach::class, 'coach_id');
     }
 
     public function user()

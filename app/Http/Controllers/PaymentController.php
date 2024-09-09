@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registration;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Stripe\Tax\Transaction;
 
 class PaymentController extends Controller
 {
-    public function onsuccess(): \Inertia\Response
+    public function onsuccess($id): \Inertia\Response
     {
+        $registration = Registration::find($id);
+
+        $registration->update([
+            'payment_status' => 'paid',
+        ]);
+
         $registrations = Registration::with('coach')
             ->where('user_id', auth()->id())
             ->get();
@@ -20,8 +25,10 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function processPayment(Request $request): \Illuminate\Http\RedirectResponse
+    public function processPayment($id): \Illuminate\Http\RedirectResponse
     {
+        $registration = Registration::find($id);
+
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
         $checkout_session = $stripe->checkout->sessions->create([
@@ -36,8 +43,12 @@ class PaymentController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => route('payment.success'),
-            'cancel_url' => route('payment.cancel'),
+            'success_url' => route('payment.success', ['id' => $id]),
+            'cancel_url' => route('payment.cancel', ['id' => $id]),
+        ]);
+
+        $registration->update([
+            'payment_status' => 'pending',  // Mark payment as pending
         ]);
 
         return redirect()->route('user_dashboard')->with('url', $checkout_session->url);
@@ -53,6 +64,7 @@ class PaymentController extends Controller
             'registrations' => $registrations,
         ]);
     }
+
 
     public function webhook(): \Illuminate\Foundation\Application|\Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
     {

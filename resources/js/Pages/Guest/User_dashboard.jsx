@@ -4,20 +4,21 @@ import Layout from "@/Layouts/Layout.jsx";
 
 export default function UserDashboard({ auth }) {
     const { registrations = [] } = usePage().props;
-    const { post, delete: destroy } = useForm(); // Corrected 'delete' function
+    const { post, delete: destroy } = useForm({
+        registration_id: '',
+    });
 
     const handleCheckout = (event, registrationId) => {
         event.preventDefault(); //TO prevent refresh
-        post(route('process_payment'), {
-            data: { registration_id: registrationId },
+        post(route('process_payment', registrationId), {
             onSuccess: (value) => {
                 window.location.href = value.props.url.url; //Bypass CORS (handle in fe rather than be)
-                alert('Success payment');
             },
             onError: (errors) => {
                 alert('Failed payment');
             },
         });
+
     };
 
     const handleDelete = (event, registrationId) => {
@@ -53,8 +54,8 @@ export default function UserDashboard({ auth }) {
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Coach</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Status</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Edit</th>
-                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Delete</th>
                                         <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Payment</th>
+                                        <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Cancellation</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -79,24 +80,28 @@ export default function UserDashboard({ auth }) {
                                                     </Link>
                                                 )}
                                             </td>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-center">
+                                                {registration.payment_status === 'paid' ? (
+                                                    <span className="text-green-500 font-bold text-lg">Paid</span> // Show that the payment was made
+                                                ) : (
+                                                    registration.status === 'accepted' && (
+                                                        <Link
+                                                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                                            onClick={(event) => handleCheckout(event, registration.id)}
+                                                        >
+                                                            Pay
+                                                        </Link>
+                                                    )
+                                                )}
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-center">
                                                 {registration.status === 'pending' && (
                                                     <button
                                                         onClick={(event) => handleDelete(event, registration.id)}
                                                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                                     >
-                                                        Delete
+                                                        Cancel
                                                     </button>
-                                                )}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-                                                {registration.status === 'accepted' && (
-                                                    <Link
-                                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                        onClick={(event) => handleCheckout(event, registration.id)}
-                                                    >
-                                                        Pay
-                                                    </Link>
                                                 )}
                                             </td>
                                         </tr>
