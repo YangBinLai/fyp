@@ -31,6 +31,7 @@ class RegisterClassController extends Controller
         $existingRegistration = Registration::where('coach_id', $coach->id)
             ->where('date', $request->selectedDate)
             ->where('time', $request->selectedTime)
+            ->where('class', '!=', $request->selectedClass)
             ->first();
 
         // If any class is booked, and either it's a private class
