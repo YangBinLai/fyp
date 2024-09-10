@@ -34,11 +34,11 @@ class PaymentController extends Controller
         $checkout_session = $stripe->checkout->sessions->create([
             'line_items' => [[
                 'price_data' => [
-                    'currency' => 'usd',
+                    'currency' => 'myr',
                     'product_data' => [
-                        'name' => 'Customer',
+                        'name' => $registration->class,
                     ],
-                    'unit_amount' => 100,
+                    'unit_amount' => $registration->price * 100,
                 ],
                 'quantity' => 1,
             ]],

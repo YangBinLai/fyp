@@ -18,6 +18,7 @@ class RegisterClassController extends Controller
             'selectedClass' => 'required|string',
             'selectedTime' => 'required|string',
             'selectedArea' => 'required|string',
+            'price' => 'required|numeric',
         ]);
 
         $coach = Coach::where('area', $request->selectedArea)->first();
@@ -35,6 +36,7 @@ class RegisterClassController extends Controller
             'area' => $request->selectedArea,
             'coach_id' => $coach->id,
             'user_id' => auth()->id(),
+            'price' => $request->price,
         ]);
 
         return redirect()->route('home')->with('success', 'You have successfully registered for the class.');
@@ -51,6 +53,12 @@ class RegisterClassController extends Controller
             'availableClasses' => ['Baby Class', 'Kid Class', 'Adult Class', 'Private Class'],
             'availableTimes' => ['09:00 AM', '10:00 AM', '11:00 AM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM', '08:00 PM', '09:00 PM'],
             'availableAreas' => ['Cheras', 'Bukit Jalil', 'Sunway'],
+            'classPrices' => [
+                'Baby Class' => 20,
+                'Kid Class' => 25,
+                'Adult Class' => 30,
+                'Private Class' => 50,
+            ],
         ]);
     }
 
@@ -61,9 +69,10 @@ class RegisterClassController extends Controller
             'class' => 'required|string',
             'time' => 'required|string',
             'area' => 'required|string',
+            'price' => 'required|numeric',
         ]);
 
-        $registration->update($request->only(['date', 'class', 'time', 'area']));
+        $registration->update($request->only(['date', 'class', 'time', 'area', 'price']));
 
         return redirect()->route('user_dashboard')->with('success', 'Class updated successfully.');
     }

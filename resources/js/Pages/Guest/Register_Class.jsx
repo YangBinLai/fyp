@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import DatePicker from 'react-datepicker';
@@ -10,7 +10,15 @@ export default function Register({ auth }) {
         selectedClass: '',
         selectedTime: '',
         selectedArea: '',
+        price: 0,
     });
+
+    const classPrices = {
+        'Baby Class': 20,
+        'Kid Class': 25,
+        'Adult Class': 30,
+        'Private Class': 50,
+    };
 
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 2);
@@ -29,6 +37,12 @@ export default function Register({ auth }) {
             },
         });
     };
+
+    useEffect(() => {
+        if (data.selectedClass) {
+            setData('price', classPrices[data.selectedClass] || 0);
+        }
+    }, [data.selectedClass]);
 
     return (
         <Layout auth={auth}>
@@ -64,6 +78,13 @@ export default function Register({ auth }) {
                             <option value="Private Class">Private Class</option>
                         </select>
                         {errors.selectedClass && <div className="text-red-600 mt-2">{errors.selectedClass}</div>}
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Class Price</label>
+                        <div className="mt-1 block w-full border rounded py-2 px-3 bg-gray-100">
+                            <p className="text-lg text-gray-900">RM {data.price}</p>
+                        </div>
                     </div>
 
                     <div className="mb-4">

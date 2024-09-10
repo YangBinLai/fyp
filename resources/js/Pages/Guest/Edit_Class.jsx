@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Head, useForm } from '@inertiajs/react';
 import Layout from "@/Layouts/Layout.jsx";
 
-export default function Edit({ auth, registration, availableClasses, availableTimes, availableAreas }) {
+export default function Edit({ auth, registration, availableClasses, availableTimes, availableAreas, classPrices }) {
     const { data, setData, put, errors } = useForm({
         date: registration.date,
         class: registration.class,
         time: registration.time,
         area: registration.area,
+        price: registration.price || 0,
     });
 
     const handleSubmit = (e) => {
@@ -16,6 +17,12 @@ export default function Edit({ auth, registration, availableClasses, availableTi
     };
 
     const isEditable = !['accepted', 'rejected'].includes(registration.status);
+
+    useEffect(() => {
+        if (data.class && classPrices[data.class] !== undefined) {
+            setData('price', classPrices[data.class]);
+        }
+    }, [data.class, classPrices]);
 
     return (
         <Layout auth={auth}>
@@ -53,6 +60,17 @@ export default function Edit({ auth, registration, availableClasses, availableTi
                                     ))}
                                 </select>
                                 {errors.class && <div className="text-red-500 mt-2">{errors.class}</div>}
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 text-sm font-bold mb-2">Price (RM)</label>
+                                <input
+                                    type="text"
+                                    value={data.price}
+                                    readOnly
+                                    className="bg-gray-100 block w-full mt-1 border-gray-300 rounded-md"
+                                />
+                                {errors.price && <div className="text-red-500 mt-2">{errors.price}</div>}
                             </div>
 
                             <div className="mb-4">

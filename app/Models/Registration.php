@@ -9,7 +9,7 @@ class Registration extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'class', 'time', 'area', 'coach_id', 'user_id', 'status', 'payment_status'];
+    protected $fillable = ['date', 'class', 'time', 'area', 'coach_id', 'user_id', 'status', 'payment_status', 'price'];
 
     public function coach()
     {
