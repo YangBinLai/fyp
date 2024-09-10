@@ -94,10 +94,12 @@ class RegisterClassController extends Controller
         $registration = Registration::findOrFail($id);
         $registration->update(['status' => 'accepted']);
 
+        $startTime = Carbon::createFromFormat('h:i A', $registration->time)->format('H:i:s');
+
         CoachAvailability::create([
             'coach_id' => $registration->coach_id,
             'date' => $registration->date,
-            'start_time' => $registration->time,
+            'start_time' => $startTime,
         ]);
 
         return redirect()->route('coach_dashboard')->with('success', 'Registration accepted.');
