@@ -55,7 +55,10 @@ export default function Register({ auth }) {
                         <label className="block text-gray-700 text-sm font-bold mb-2">Select Date</label>
                         <DatePicker
                             selected={data.selectedDate}
-                            onChange={(date) => setData('selectedDate', date)}
+                            onChange={(date) => {
+                                const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+                                setData('selectedDate', utcDate.toISOString().substring(0, 10));
+                            }}
                             dateFormat="yyyy/MM/dd"
                             className="mt-1 block w-full border rounded py-2 px-3"
                             minDate={minDate}
