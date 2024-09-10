@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Layout from '@/Layouts/Layout';
 import { Head, useForm } from '@inertiajs/react';
 import DatePicker from 'react-datepicker';

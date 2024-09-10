@@ -13,7 +13,7 @@ export default function Career({ auth }) {
                         className="w-full h-96 object-cover filter blur-sm opacity-70"
                     />
                 </div>
-                <div className="container mx-auto px-6 md:px-12 lg:px-24">
+                <div className="container mx-auto px-6 md:px-12 lg:px-24 mt-10">
                     <div className="text-center mb-12">
                         <h1 className="text-5xl font-bold text-blue-800 mb-4">Join Our Team</h1>
                         <p className="text-xl text-gray-700">
