@@ -27,8 +27,20 @@ class RegisterClassController extends Controller
             return redirect()->back()->withErrors(['selectedArea' => 'No coach available in the selected area.']);
         }
 
+        // Check if the coach is already booked for any class at the selected date and time
+        $existingRegistration = Registration::where('coach_id', $coach->id)
+            ->where('date', $request->selectedDate)
+            ->where('time', $request->selectedTime)
+            ->first();
+
+        // If any class is booked, and either it's a private class
+        if ($existingRegistration && ($existingRegistration->class === 'Private Class')) {
+            return redirect()->back()->withErrors(['selectedTime' => 'The coach is already booked for the selected time. Please choose a different time.']);
+        }
+
         $formattedDate = Carbon::parse($request->selectedDate)->format('Y-m-d');
 
+        // Create the registration since the slot is available
         Registration::create([
             'date' => $formattedDate,
             'class' => $request->selectedClass,
@@ -41,6 +53,7 @@ class RegisterClassController extends Controller
 
         return redirect()->route('home')->with('success', 'You have successfully registered for the class.');
     }
+
 
     public function edit(Registration $registration)
     {
