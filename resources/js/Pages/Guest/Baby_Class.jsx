@@ -70,7 +70,7 @@ export default function BabyClass({ auth }) {
                             <h3 className="text-2xl font-bold text-gray-900">Our Instructors</h3>
                             <p className="text-gray-700 mt-4">Our instructors are certified and have extensive experience working with infants and toddlers. They are trained to create a safe, supportive, and enjoyable environment for your baby.</p>
                             <ul className="list-disc list-inside mt-4 text-gray-700">
-                                <li>Certified by [Relevant Authority]</li>
+                                <li>Certified by Malaysia Swimming</li>
                                 <li>Trained in infant CPR and First Aid</li>
                                 <li>Experienced in early childhood development</li>
                             </ul>
