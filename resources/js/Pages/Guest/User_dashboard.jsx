@@ -82,7 +82,11 @@ export default function UserDashboard({ auth }) {
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-center">
                                                 {registration.payment_status === 'paid' ? (
-                                                    <span className="text-green-500 font-bold text-lg">Paid</span> // Show that the payment was made
+                                                    <span className="text-green-500 font-bold text-lg">Paid</span>
+                                                ) :  registration.status === 'pending' ? (
+                                                    <span className="text-black font-bold text-lg"> - </span>
+                                                ) : registration.status === 'rejected' ? (
+                                                    <span className="text-black font-bold text-lg"> - </span>
                                                 ) : (
                                                     registration.status === 'accepted' && (
                                                         <Link
@@ -95,13 +99,15 @@ export default function UserDashboard({ auth }) {
                                                 )}
                                             </td>
                                             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-center">
-                                                {registration.status === 'pending' && (
+                                                {registration.status === 'pending' ? (
                                                     <button
                                                         onClick={(event) => handleDelete(event, registration.id)}
                                                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                                                     >
                                                         Cancel
                                                     </button>
+                                                ) : (
+                                                    <span className="text-gray-500 italic">Cannot Cancel</span>
                                                 )}
                                             </td>
                                         </tr>
