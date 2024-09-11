@@ -17,7 +17,7 @@ export default function Career({ auth }) {
                     <div className="text-center mb-12">
                         <h1 className="text-5xl font-bold text-blue-800 mb-4">Join Our Team</h1>
                         <p className="text-xl text-gray-700">
-                            At [Academy Name], we’re always looking for passionate and talented individuals to join our
+                            At Octopi, we’re always looking for passionate and talented individuals to join our
                             team.
                             If you love swimming and are eager to make a difference, explore our current opportunities
                             below.
@@ -28,7 +28,7 @@ export default function Career({ auth }) {
                         <h2 className="text-4xl font-bold text-blue-800 mb-6 text-center">Our Culture</h2>
                         <div className="bg-white rounded-lg shadow-lg p-8">
                             <p className="text-gray-700 mb-4">
-                                Our team at [Academy Name] is made up of enthusiastic and dedicated professionals who
+                                Our team at Octopi is made up of enthusiastic and dedicated professionals who
                                 are committed to providing the best possible experience for our members. We believe in
                                 fostering a positive, inclusive, and collaborative work environment where everyone can
                                 thrive.

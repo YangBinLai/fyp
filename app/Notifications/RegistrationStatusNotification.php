@@ -45,7 +45,7 @@ class RegistrationStatusNotification extends Notification
 
         return (new MailMessage)
             ->line("Your class registration for '{$this->class}' on {$this->date} at {$this->time} has been {$statusMessage}.")
-//            ->action('View Your Dashboard', url('/dashboard'))
+            ->action('View Your Dashboard', url('/user_dashboard'))
             ->line('Thank you for using our application!');
     }
 
