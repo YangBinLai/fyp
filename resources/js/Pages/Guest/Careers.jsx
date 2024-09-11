@@ -55,7 +55,7 @@ export default function Career({ auth }) {
                                     The ideal candidate will have a strong background in coaching, a passion for
                                     swimming, and the ability to inspire and motivate swimmers of all ages.
                                 </p>
-                                <p className="text-gray-700 mb-2"><strong>Location:</strong> [City, State]</p>
+                                <p className="text-gray-700 mb-2"><strong>Location:</strong> Cheras</p>
                                 <p className="text-gray-700 mb-2"><strong>Type:</strong> Full-Time</p>
                                 <p className="text-gray-700 mb-6"><strong>Experience:</strong> 3+ Years</p>
                             </div>
@@ -67,7 +67,7 @@ export default function Career({ auth }) {
                                     front desk team. The ideal candidate will have excellent communication skills and a
                                     passion for helping others.
                                 </p>
-                                <p className="text-gray-700 mb-2"><strong>Location:</strong> [City, State]</p>
+                                <p className="text-gray-700 mb-2"><strong>Location:</strong> Bukit Jalil</p>
                                 <p className="text-gray-700 mb-2"><strong>Type:</strong> Part-Time</p>
                                 <p className="text-gray-700 mb-6"><strong>Experience:</strong> 1+ Years</p>
                             </div>
