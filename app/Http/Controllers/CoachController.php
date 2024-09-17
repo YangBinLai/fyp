@@ -59,6 +59,14 @@ class CoachController extends Controller
 
     public function destroy(Coach $coach)
     {
+        $ongoingClasses = Registration::where('coach_id', $coach->id)
+            ->whereIn('status', ['pending', 'accepted'])
+            ->exists();
+
+        if ($ongoingClasses) {
+            return redirect()->back()->withErrors(['error' => 'Coach cannot be deleted because they have ongoing classes.']);
+        }
+
         $coach->user()->delete();
         $coach->delete();
 
