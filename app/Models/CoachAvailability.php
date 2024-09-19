@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CoachAvailability extends Model
 {
     use HasFactory;
-    protected $fillable = ['coach_id', 'date', 'start_time'];
+    protected $fillable = ['coach_id', 'date', 'start_time', 'class'];
 
     public function coach()
     {

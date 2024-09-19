@@ -16,6 +16,7 @@ export default function Unavailable({ auth, unavailableDates }) {
                                 <thead>
                                 <tr>
                                     <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Coach Name</th>
+                                    <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Class</th>
                                     <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Date</th>
                                     <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-gray-600 uppercase tracking-wider">Time</th>
                                 </tr>
@@ -24,6 +25,7 @@ export default function Unavailable({ auth, unavailableDates }) {
                                 {unavailableDates.map((availability, index) => (
                                     <tr key={availability.id || index}>
                                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{availability.coach.name}</td>
+                                        <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{availability.class}</td>
                                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{availability.date}</td>
                                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">{availability.time}</td>
                                     </tr>

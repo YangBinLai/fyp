@@ -12,7 +12,7 @@ class CoachAvailabilityController extends Controller
         // Fetch all accepted registrations (i.e., unavailable times for coaches)
         $unavailableDates = Registration::where('status', 'accepted')
             ->with('coach')
-            ->get(['coach_id', 'date', 'time']);
+            ->get(['coach_id', 'date', 'time', 'class']);
 
         return inertia('Guest/Coach_Availability', [
             'unavailableDates' => $unavailableDates,
