@@ -41,6 +41,8 @@ export default function Register({ auth }) {
     useEffect(() => {
         if (data.selectedClass) {
             setData('price', classPrices[data.selectedClass] || 0);
+        } else {
+            setData('price', 0);
         }
     }, [data.selectedClass]);
 
