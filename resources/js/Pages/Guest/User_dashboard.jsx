@@ -9,12 +9,12 @@ export default function UserDashboard({ auth }) {
     });
 
     const handleCheckout = (event, registrationId) => {
-        event.preventDefault(); //TO prevent refresh
+        event.preventDefault(); //To prevent refresh
         post(route('process_payment', registrationId), {
             onSuccess: (value) => {
                 window.location.href = value.props.url.url; //Bypass CORS (handle in fe rather than be)
             },
-            onError: (errors) => {
+            onError: () => {
                 alert('Failed payment');
             },
         });
