@@ -25,7 +25,11 @@ export default function AdminDashboard({ auth }) {
 
     const handleDelete = (id) => {
         if (confirm('Are you sure you want to delete this coach?')) {
-            destroy(route('coaches.destroy', id));
+            destroy(route('coaches.destroy', id), {
+                onError: (error) => {
+                    alert('Coach cannot be deleted as there are ongoing or upcoming classes.');
+                }
+            });
         }
     };
 

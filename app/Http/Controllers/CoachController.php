@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coach;
 use App\Models\Registration;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,10 +73,12 @@ class CoachController extends Controller
     {
         $ongoingClasses = Registration::where('coach_id', $coach->id)
             ->whereIn('status', ['pending', 'accepted'])
+            ->where('date', '>=', Carbon::now()) // Check if the class date is in the future
             ->exists();
 
         if ($ongoingClasses) {
-            return redirect()->back()->withErrors(['error' => 'Coach cannot be deleted because they have ongoing classes.']);
+            return redirect()->route('admin_dashboard')
+                ->withErrors(['error' => 'Coach cannot be deleted because they have ongoing or accepted classes.']);
         }
 
         $coach->user()->delete();
