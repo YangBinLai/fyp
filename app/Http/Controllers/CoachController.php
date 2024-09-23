@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Coach;
 use App\Models\Registration;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -34,27 +35,37 @@ class CoachController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:coaches,email',
-            'phone' => 'nullable|string|max:20',
+            'phone' => ['nullable', 'regex:/^\d{10,11}$/'],
             'area' => 'nullable|string|max:255',
             'password' => 'required|string|min:8|confirmed',
+        ], [
+            'email.unique' => 'The email address is already registered with another coach.', // Custom error message for duplicate email
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'coach',
-        ]);
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'coach',
+            ]);
 
-        Coach::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'area' => $request->area,
-            'user_id' => $user->id,
-        ]);
+            Coach::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'area' => $request->area,
+                'user_id' => $user->id,
+            ]);
 
-        return redirect()->route('admin_dashboard')->with('success', 'Coach added successfully.');
+            return redirect()->route('admin_dashboard')->with('success', 'Coach added successfully.');
+        } catch (QueryException $e) {
+            if($e->errorInfo[1] == 1062) {
+                return back()->withErrors(['email' => 'This email is already in use. Please use a different email.']);
+            }
+
+            return back()->withErrors(['error' => 'An unexpected error occurred. Please try again.']);
+        }
     }
 
     public function destroy(Coach $coach)
