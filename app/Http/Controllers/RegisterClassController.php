@@ -86,6 +86,23 @@ class RegisterClassController extends Controller
             'price' => 'required|numeric',
         ]);
 
+        $coach = Coach::where('area', $request->area)->first();
+
+        if (!$coach) {
+            return redirect()->back()->withErrors(['area' => 'No coach available in the selected area.']);
+        }
+
+        $existingRegistration = Registration::where('coach_id', $coach->id)
+            ->where('date', $request->date)
+            ->where('time', $request->time)
+            ->where('id', '!=', $registration->id)
+            ->first();
+
+        if ($existingRegistration) {
+            return redirect()->back()->withErrors(['time' => 'The coach is already booked for the selected time. Please choose a different time.']);
+        }
+
+        // Update the registration
         $registration->update($request->only(['date', 'class', 'time', 'area', 'price']));
 
         return redirect()->route('user_dashboard')->with('success', 'Class updated successfully.');
@@ -114,6 +131,7 @@ class RegisterClassController extends Controller
             'coach_id' => $registration->coach_id,
             'date' => $registration->date,
             'start_time' => $startTime,
+            'class' => $registration->class,
         ]);
 
         return redirect()->route('coach_dashboard')->with('success', 'Registration accepted.');
