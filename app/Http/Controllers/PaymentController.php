@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registration;
+use Carbon\Carbon;
 use Inertia\Inertia;
 use Stripe\Tax\Transaction;
 
@@ -12,9 +13,21 @@ class PaymentController extends Controller
     {
         $registration = Registration::find($id);
 
-        $registration->update([
-            'payment_status' => 'paid',
-        ]);
+        // Get the current date and the class date
+        $currentDate = Carbon::now();
+        $classDate = Carbon::parse($registration->date);
+
+        // If the class date is in the past, mark payment as paid
+        if ($classDate->isPast()) {
+            $registration->update([
+                'payment_status' => 'paid',
+            ]);
+        } else {
+            // Update the payment status to 'paid' if payment was processed
+            $registration->update([
+                'payment_status' => 'paid',
+            ]);
+        }
 
         $registrations = Registration::with('coach')
             ->where('user_id', auth()->id())
@@ -25,10 +38,23 @@ class PaymentController extends Controller
         ]);
     }
 
+
     public function processPayment($id): \Illuminate\Http\RedirectResponse
     {
         $registration = Registration::find($id);
 
+        $classDate = Carbon::parse($registration->date);
+
+        // If the class date has passed, mark as paid and skip Stripe payment
+        if ($classDate->isPast()) {
+            $registration->update([
+                'payment_status' => 'paid',  // Mark as paid because they paid on the spot
+            ]);
+
+            return redirect()->route('user_dashboard')->with('success', 'Payment marked as paid since the class has already occurred.');
+        }
+
+        // Continue with Stripe payment process if the class date is in the future
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
         $checkout_session = $stripe->checkout->sessions->create([

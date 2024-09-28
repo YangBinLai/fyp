@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class RegisterClassController extends Controller
 {
+
     public function submit(Request $request)
     {
         $request->validate([
@@ -23,22 +24,36 @@ class RegisterClassController extends Controller
 
         $coach = Coach::where('area', $request->selectedArea)->first();
 
+        // Check if the coach is available in the selected area
         if (!$coach) {
             return redirect()->back()->withErrors(['selectedArea' => 'No coach available in the selected area.']);
         }
 
-        // Check if the coach is already booked for any class at the selected date and time
-        $existingRegistration = Registration::where('coach_id', $coach->id)
-            ->where('date', $request->selectedDate)
-            ->where('time', $request->selectedTime)
-            ->where('class', '!=', $request->selectedClass)
-            ->first();
+        // Block multiple "Private Class" bookings at the same time
+        if ($request->selectedClass === 'Private Class') {
+            $existingPrivateClass = Registration::where('coach_id', $coach->id)
+                ->where('date', $request->selectedDate)
+                ->where('time', $request->selectedTime)
+                ->where('class', 'Private Class')
+                ->first();
 
-        // If any class is booked, and either it's a private class
-        if ($existingRegistration && ($existingRegistration->class === 'Private Class')) {
-            return redirect()->back()->withErrors(['selectedTime' => 'The coach is already booked for the selected time. Please choose a different time.']);
+            if ($existingPrivateClass) {
+                return redirect()->back()->withErrors(['selectedTime' => 'The coach is already booked for a Private Class at the selected time. Please choose a different time.']);
+            }
         }
 
+        // Block different class types being booked at the same time
+        $existingDifferentClass = Registration::where('coach_id', $coach->id)
+            ->where('date', $request->selectedDate)
+            ->where('time', $request->selectedTime)
+            ->where('class', '!=', $request->selectedClass) // Check for different class types
+            ->first();
+
+        if ($existingDifferentClass) {
+            return redirect()->back()->withErrors(['selectedTime' => 'The coach is already booked for a different class at the selected time. Please choose a different time or class.']);
+        }
+
+        // Allow same type of class at the same time
         $formattedDate = Carbon::parse($request->selectedDate)->format('Y-m-d');
 
         // Create the registration since the slot is available
@@ -54,6 +69,7 @@ class RegisterClassController extends Controller
 
         return redirect()->route('home')->with('success', 'You have successfully registered for the class.');
     }
+
 
 
     public function edit(Registration $registration)
