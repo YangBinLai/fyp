@@ -7,7 +7,7 @@ export default function Welcome({ auth }) {
             <Layout auth={auth}>
                 <Head title="Welcome"/>
                 <div className="relative min-h-screen flex flex-col items-center justify-center bg-gray-50 selection:bg-[#FF2D20] selection:text-white pt-15 pb-10">
-                    <img src="/images/Pic1.jpeg" alt="Swimming" className="-mt-20"/>
+                    <img src="/images/Pic1.jpeg" alt="Swimming" className="w-full -mt-20"/>
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl text-center">
                         <main className="mt-6">
                             <h1 className="text-6xl font-bold text-gray-900 mb-4" style={{fontFamily: 'Georgia, serif'}}>Dive into Excellence</h1>
