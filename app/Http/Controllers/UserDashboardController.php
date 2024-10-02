@@ -12,7 +12,7 @@ class UserDashboardController extends Controller
     {
         $user = Auth::user();
 
-        $registrations = Registration::where('user_id', $user->id)->with('coach')->get();
+        $registrations = Registration::where('user_id', $user->id)->with('coach')->orderBy('date', 'desc')->get();
 
         return Inertia::render('Guest/User_dashboard', [
             'registrations' => $registrations,

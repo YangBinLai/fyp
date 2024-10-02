@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin_dashboard', [AdminController::class, 'index'])->name('admin_dashboard');
     Route::post('/coaches', [CoachController::class, 'store'])->name('coaches.store');
     Route::delete('/coaches/{coach}', [CoachController::class, 'destroy'])->name('coaches.destroy');
-    Route::get('/coach_availability', [CoachAvailabilityController::class, 'showUnavailable'])->name('coach_availability');
+    Route::get('/coach_availability', [CoachAvailabilityController::class, 'showCoachAvailability'])->name('coach_availability');
 
     Route::post('/register_class/submit', [RegisterCLassController::class, 'submit'])->name('register_class.submit');
     Route::get('/registrations/{registration}/edit', [RegisterClassController::class, 'edit'])->name('registrations.edit');

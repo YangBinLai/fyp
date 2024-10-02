@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\CoachAvailability;
 use App\Models\Registration;
+use Carbon\Carbon;
+use Inertia\Inertia;
 
 class CoachAvailabilityController extends Controller
 {
-    public function showUnavailable()
+    public function showCoachAvailability()
     {
-        // Fetch all accepted registrations (i.e., unavailable times for coaches)
         $unavailableDates = Registration::where('status', 'accepted')
             ->with('coach')
+            ->where('date', '>=', Carbon::now()->format('Y-m-d'))
+            ->orderBy('date', 'desc')
             ->get(['coach_id', 'date', 'time', 'class']);
 
-        return inertia('Guest/Coach_Availability', [
+        return Inertia::render('Guest/Coach_Availability', [
             'unavailableDates' => $unavailableDates,
         ]);
     }
